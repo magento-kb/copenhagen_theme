@@ -19,27 +19,16 @@
 <link href="{{asset "prism.css"}}" rel="stylesheet"/>
 <link rel="stylesheet" href="https://use.typekit.net/scl2pgq.css">
 <link href="{{asset "magento.css"}}" rel="stylesheet"/>
+<link href="{{asset "coveo.css"}}" rel="stylesheet"/>
 <script src="{{asset "kb.js"}}"></script>
 <script src="{{asset "magento.js"}}"></script>
-<!-- Algolia Script -->
-<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/algoliasearch.zendesk-hc/2.25.2/algoliasearch.zendesk-hc.min.css">
 
-<script type="text/javascript" src="//cdn.jsdelivr.net/algoliasearch.zendesk-hc/2.25.2/algoliasearch.zendesk-hc.min.js"></script>
-<script type="text/javascript">
-  algoliasearchZendeskHC({
-    applicationId: 'E642SEDTHL',
-    apiKey: 'd5a5aab3b56e21d8a0517661628b6cca',
-    subdomain: 'magento',
-  	indexPrefix: 'zendesk_production_',
-  	poweredBy: false,
-    autocomplete: {
-        enabled: true,                      // is the autocomplete feature enabled?
-        inputSelector: '#query',            // the DOM selector to select the search box
-        hitsPerPage: 5                      // the number of suggestions to display
-      }
-  });
-</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
+{{!-- COVEO INTEGRATION --}}
+
+<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.10099/2/css/CoveoFullSearch.css" integrity="sha512-Sd7mINT5SVecaWbHpz8gbBu9KFN34Mfpzp8UX1k3AVPeUZ6RYKm3/2RM/Ux69rBN4pmHnxmZpm2O2xPgrsAUNA==" crossorigin="anonymous" />
+<script class="coveo-script" src="https://static.cloud.coveo.com/searchui/v2.10099/2/js/CoveoJsSearch.Lazy.js" integrity="sha512-VdzTZev33bI5/6kITF3tYSZqqWlZhF7Or3nWkMv8MYft31v+WsFCTANRbKdbjgTWXOBFTnY7VFkYUVJfAQVPmw==" crossorigin="anonymous"></script>
+<script class="coveo-script" src="https://static.cloud.coveo.com/coveoforzendesk/v0.0.2/selfservice/commonjs/CoveoForZendesk.min.js" crossorigin="anonymous"></script>
 

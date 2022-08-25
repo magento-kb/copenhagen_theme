@@ -5,149 +5,105 @@
   </nav>
 
   <div class="search-results">
-    <aside class="search-results-sidebar">
-      {{#if source_filters}}
-        <section class="filters-in-section collapsible-sidebar" aria-expanded="false">
-          <button type="button" class="collapsible-sidebar-toggle" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon x-icon">
-              <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
-            </svg>
-          </button>
-          <span class="collapsible-sidebar-title sidenav-title">{{t 'filter_source'}}</span>
-          <ul class="multibrand-filter-list multibrand-filter-list--collapsed">
-            {{#each source_filters}}
-              <li>
-              {{#if selected}}
-                <a href="{{url}}" class="sidenav-item current searchbar-sidenav-item" aria-current="page">
-              {{else}}
-                <a href="{{url}}" class="sidenav-item searchbar-sidenav-item">
-              {{/if}}
-                  <span class="sidenav-subitem filter-name">{{name}}</span>
-                  <span class="sidenav-subitem doc-count">({{count}})</span>
-                </a>
-              </li>
-            {{/each}}
-            <button class="see-all-filters" aria-hidden="true" aria-label="{{t 'show_more_sources'}}">{{t 'show_more_sources'}}</button>
-          </ul>
-        </section>
-      {{/if}}
-      {{#if type_filters}}
-        <section class="filters-in-section collapsible-sidebar" aria-expanded="false">
-          <button type="button" class="collapsible-sidebar-toggle" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon x-icon">
-              <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
-            </svg>
-          </button>
-          <span class="collapsible-sidebar-title sidenav-title">{{t 'filter_type'}}</span>
-          <ul class="multibrand-filter-list multibrand-filter-list--collapsed">
-            {{#each type_filters}}
-              <li>
-              {{#if selected}}
-                <a href="{{url}}" class="sidenav-item current searchbar-sidenav-item" aria-current="page">
-              {{else}}
-                <a href="{{url}}" class="sidenav-item searchbar-sidenav-item">
-              {{/if}}
-                  <span class="sidenav-subitem filter-name">{{name}}</span>
-                  <span class="sidenav-subitem doc-count">({{count}})</span>
-                </a>
-              </li>
-            {{/each}}
-          </ul>
-        </section>
-      {{/if}}
-      {{#if subfilters}}
-        <section class="filters-in-section collapsible-sidebar" aria-expanded="false">
-          <button type="button" class="collapsible-sidebar-toggle" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon x-icon">
-              <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
-            </svg>
-          </button>
-          {{#is current_filter.identifier 'knowledge_base'}}
-            <span class="collapsible-sidebar-title sidenav-title">{{t 'filter_by_category'}}</span>
-          {{/is}}
-          {{#is current_filter.identifier 'community'}}
-            <span class="collapsible-sidebar-title sidenav-title">{{t 'filter_by_topic'}}</span>
-          {{/is}}
-          <ul class="multibrand-filter-list multibrand-filter-list--collapsed">
-            {{#each subfilters}}
-              <li>
-                {{#if selected}}
-                  <a href="{{url}}" class="sidenav-item current searchbar-sidenav-item" aria-current="page">
-                {{else}}
-                  <a href="{{url}}" class="sidenav-item searchbar-sidenav-item">
-                {{/if}}
-                  <span class="sidenav-subitem filter-name">{{name}}</span>
-                  <span class="sidenav-subitem doc-count">({{count}})</span>
-                </a>
-              </li>
-            {{/each}}
-            {{#is current_filter.identifier 'knowledge_base'}}
-              <button class="see-all-filters" aria-hidden="true" aria-label="{{t 'show_more_categories'}}">{{t 'show_more_categories'}}</button>
-            {{/is}}
-            {{#is current_filter.identifier 'community'}}
-              <button class="see-all-filters" aria-hidden="true" aria-label="{{t 'show_more_topics'}}">{{t 'show_more_topics'}}</button>
-            {{/is}}
-          </ul>
-        </section>
-      {{/if}}
-    </aside>
-
-    <section id="main-content" class="search-results-column">
-      <h1 class="search-results-subheading">
-        {{#is current_filter.identifier 'unified'}}
-          {{t 'results' query=query count=results_count}}
-        {{else}}
-          {{#unless current_subfilter.identifier}}
-            {{t 'results' query=query count=results_count}}
-          {{else}}
-            {{t 'results_with_scope' query=query count=results_count scope_name=current_subfilter.name}}
-          {{/unless}}
-        {{/is}}
-      </h1>
-      {{#if results}}
-        <ul class="search-results-list">
-          {{#each results}}
-            <li class="search-result-list-item result-{{type}}">
-              <h2 class="search-result-title">
-                <a href="{{url}}" class="results-list-item-link"  {{#if is_external}} target="_blank" {{/if}}>
-                  {{title}}
-                  {{#if is_external}}
-                    <svg viewBox="0 0 12 12" height="12" id="zd-svg-icon-12-new-window-fill">
-                      <path fill="none" stroke="currentColor" stroke-linecap="round" d="M10.5 8.5V10c0 .28-.22.5-.5.5H2c-.28 0-.5-.22-.5-.5V2c0-.28.22-.5.5-.5h1.5M6 6l4-4"></path>
-                      <path fill="currentColor" d="M10.5 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5a.474.474 0 0 1-.11-.54C5.62 1.12 5.8 1 6 1h4c.55 0 1 .45 1 1v4c0 .2-.12.38-.31.46-.06.03-.13.04-.19.04z"></path>
-                    </svg>
-                  {{/if}}
-                </a>
-              </h2>
-              <div class="search-result-icons">
-              </div>
-              <article>
-                <ul class="meta-group">
-                  <li class="meta-data">{{date created_at}}</li>
-                </ul>
-                <div class="search-results-description">{{text}}</div>
-              </article>
-            </li>
-          {{/each}}
-        </ul>
-      {{else}}
-        <p>
-          {{t 'no_results_unified'}}
-          {{#link 'help_center'}}
-            {{t 'browse_help_center'}}
-          {{/link}}
-        </p>
-      {{/if}}
-    </section>
+    <div id="search" class="CoveoSearchInterface" data-enable-history="true">
+      <div class="CoveoFolding"></div>
+      <div class="CoveoAnalytics"></div>
+      <div class="coveo-search-section">
+        <div class="CoveoSearchbox" data-enable-omnibox="true"></div>
+      </div>
+      <div class="coveo-main-section">
+        <div class="coveo-facet-column">
+          <div
+            class="CoveoDynamicFacet"
+            data-title="Type"
+            data-field="@objecttype"
+            data-tab="All"
+          ></div>
+        </div>
+        <div class="coveo-results-column">
+          <div class="CoveoShareQuery"></div>
+          <div class="CoveoPreferencesPanel">
+            <div class="CoveoResultsPreferences"></div>
+            <div class="CoveoResultsFiltersPreferences"></div>
+          </div>
+          <div class="CoveoTriggers"></div>
+          <div class="CoveoBreadcrumb"></div>
+          <div class="CoveoDidYouMean"></div>
+          <div class="coveo-results-header">
+            <div class="coveo-summary-section">
+              <span class="CoveoQuerySummary"><div
+                  class="coveo-show-if-no-results"
+                ></div></span>
+              <span class="CoveoQueryDuration"></span>
+            </div>
+            <div class="coveo-result-layout-section">
+              <span class="CoveoResultLayout"></span>
+            </div>
+            <div class="coveo-sort-section">
+              <span
+                class="CoveoSort"
+                data-sort-criteria="relevancy"
+                data-caption="Relevance"
+              ></span>
+              <span
+                class="CoveoSort"
+                data-sort-criteria="date descending,date ascending"
+                data-caption="Date"
+              ></span>
+            </div>
+          </div>
+          <div class="CoveoHiddenQuery"></div>
+          <div class="CoveoErrorReport" data-pop-up="false"></div>
+          <div
+            class="CoveoResultList"
+            data-layout="list"
+            data-wait-animation="fade"
+            data-auto-select-fields-to-include="true"
+          >
+            <script
+              id="Default"
+              class="result-template"
+              type="text/html"
+              data-layout="list"
+            >
+              <div class="coveo-result-frame"> <div class="coveo-result-cell"
+              style="vertical-align:top;text-align:center;width:32px;"> <span
+              class="CoveoIcon" data-small="true"
+              data-with-label="false"></span> <div class="CoveoQuickview"></div>
+              </div> <div class="coveo-result-cell" style="vertical-align:
+              top;padding-left: 16px;"> <div class="coveo-result-row"
+              style="margin-top:0;"> <div class="coveo-result-cell"
+              style="vertical-align:top;font-size:16px;" role="heading"
+              aria-level="2"> <a class="CoveoResultLink"
+              data-always-open-in-new-window="true"></a> </div> <div
+              class="coveo-result-cell"
+              style="width:120px;text-align:right;font-size:12px"> <div
+              class="coveo-result-row"> <span class="CoveoFieldValue"
+              data-field="@date" data-helper="date"></span> </div> </div> </div>
+              <div class="coveo-result-row" style="margin-top:10px;"> <div
+              class="coveo-result-cell"> <span class="CoveoExcerpt"></span>
+              </div> </div> <div class="coveo-result-row"
+              style="margin-top:10px;"> <div class="coveo-result-cell"> <span
+              class="CoveoFieldValue" data-field="@author"
+              data-text-caption="Author" style="margin-right:30px;"></span>
+              <span class="CoveoFieldValue" data-field="@source"
+              data-text-caption="Source" style="margin-right:30px;"></span>
+              <span class="CoveoFieldValue" data-field="@language"
+              data-text-caption="Language" style="margin-right:30px;"></span>
+              <span class="CoveoFieldValue" data-field="@filetype"
+              data-text-caption="File Type" style="margin-right:30px;"></span>
+              </div> </div> <div class="coveo-result-row"
+              style="margin-top:10px;"> <div class="coveo-result-cell"> <div
+              class="CoveoPrintableUri"></div> </div> </div> <div
+              class="coveo-result-row"> <div class="coveo-result-cell"> <div
+              class="CoveoMissingTerms"></div> </div> </div> </div> </div>
+            </script>
+          </div>
+          <div class="CoveoPager"></div>
+          <div class="CoveoLogo"></div>
+          <div class="CoveoResultsPerPage"></div>
+        </div>
+      </div>
+    </div>
   </div>
-  {{pagination}}
 </div>

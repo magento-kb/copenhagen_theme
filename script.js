@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+
+  // COVEO INTEGRATION
+
+  var options = {
+    APIKey: "xx9567f1ee-d66a-48ed-9f1b-0f30e1ec934f",
+    searchBoxId: "searchbox",
+    searchPageId: "search"
+    }
+    CoveoForZendesk.init(options);
+
+  // COVEO INTEGRATION END
+   
+
   // Key map
   var ENTER = 13;
   var ESCAPE = 27;
