@@ -168,6 +168,7 @@ $('span.banner_close_btn').click(function() {
         $.inArray("entitlement_cloud", userEntitlement) == -1 &&
         $.inArray("entitlement_magento_order_management", userEntitlement) == -1 &&
         $.inArray("entitlement_mbi", userEntitlement) == -1 &&
+        $.inArray("entitlement_mc_cloud", userEntitlement) == -1 &&
         $.inArray("entitlement_payments", userEntitlement) != -1) {
           formUrl = $("option[value=" + payments_ticket_form_id + "]").attr("data-url");
           //Payments Value
