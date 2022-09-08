@@ -168,6 +168,7 @@ $('span.banner_close_btn').click(function() {
         $.inArray("entitlement_cloud", userEntitlement) == -1 &&
         $.inArray("entitlement_magento_order_management", userEntitlement) == -1 &&
         $.inArray("entitlement_mbi", userEntitlement) == -1 &&
+        $.inArray("entitlement_mc_cloud", userEntitlement) == -1 &&
         $.inArray("entitlement_payments", userEntitlement) != -1) {
           formUrl = $("option[value=" + payments_ticket_form_id + "]").attr("data-url");
           //Payments Value
@@ -330,7 +331,7 @@ $('span.banner_close_btn').click(function() {
         return id;
       });
       
-      var private_options = ['com_cr_proactive_outage_notification', 'com_cr_proactive_infrastructure_notification']
+      var private_options = ['com_cr_proactive_outage_notification', 'com_cr_proactive_infrastructure_notification', 'com_cr_rca_request']
       
       //filter for only the desired values
       var remove_cr = all_cr_options.filter(function(cr){
