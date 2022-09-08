@@ -230,16 +230,16 @@ h1 {
 }
 
 h2 {
-  font-size: 22px;
+  font-size: 26px;
 }
 
 h3 {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
 }
 
 h4 {
-  font-size: 16px;
+  font-size: 20px;
 }
 
 a {
@@ -5406,7 +5406,7 @@ code[class*="language-"] {
 }
 
 /***** Custom alert formatting *****/
-p.success, p.warning, p.info, p.error {
+p.success, p.warning, p.info, p.error, p.warning_banner {
 	padding:10px 20px 10px 10px;
 	margin-top:15px;
   margin-bottom:15px;
@@ -5416,7 +5416,7 @@ p.success, p.warning, p.info, p.error {
   border-radius: 4px;
 }
 
-p.success:before, p.warning:before, p.info:before, p.error:before  {
+p.success:before, p.warning:before, p.info:before, p.error:before {
 	float: left;
   padding-right:15px;
   margin-top: 3px;
@@ -5438,6 +5438,12 @@ p.warning {
 }
 p.warning:before {
 	content: url("$assets-icon-warning-svg");
+}
+
+p.warning_banner {
+	background-color: #fbedda;
+	border: #c1741b solid 1px;
+	color:#c1741b;
 }
 
 p.error {
