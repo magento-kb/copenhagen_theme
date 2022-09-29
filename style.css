@@ -230,16 +230,16 @@ h1 {
 }
 
 h2 {
-  font-size: 26px;
+  font-size: 22px;
 }
 
 h3 {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 600;
 }
 
 h4 {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 a {
@@ -5406,7 +5406,7 @@ code[class*="language-"] {
 }
 
 /***** Custom alert formatting *****/
-p.success, p.warning, p.info, p.error, p.warning_banner {
+p.tip, p.warning, p.note, p.important {
 	padding:10px 20px 10px 10px;
 	margin-top:15px;
   margin-bottom:15px;
@@ -5416,18 +5416,18 @@ p.success, p.warning, p.info, p.error, p.warning_banner {
   border-radius: 4px;
 }
 
-p.success:before, p.warning:before, p.info:before, p.error:before {
+p.tip:before, p.warning:before, p.note:before, p.important:before  {
 	float: left;
   padding-right:15px;
   margin-top: 3px;
 }
 
-p.success {
+p.tip {
 	background-color: #ddf3e2;
 	border: #187c2c solid 1px;
 	color:#187c2c;
 }
-p.success:before {
+p.tip:before {
 	content: url("$assets-icon-success-svg");
 }
 
@@ -5440,10 +5440,33 @@ p.warning:before {
 	content: url("$assets-icon-warning-svg");
 }
 
-p.warning_banner {
+p.warning-banner {
 	background-color: #fbedda;
 	border: #c1741b solid 1px;
 	color:#c1741b;
+}
+
+p.migration-banner {
+	background-color: white;
+	border: #F29423 solid 2px;
+	color:#747474;
+  margin: 0 0 20px 0; 
+  padding:10px 10vw; 
+  border-radius:5px; 
+  text-align:center;
+  font-weight: bold;
+}
+
+p.migration-banner a:after {
+  content: url("$assets-icon-external-link-svg");
+  margin-left: 5px;
+}
+
+p.migration-banner::before {
+  content: url("$assets-icon-warning-svg");
+  padding-right: 5px;
+  position: relative;
+  top: 5px;
 }
 
 p.error {
@@ -5455,12 +5478,12 @@ p.error:before {
 	content: url("$assets-icon-error-svg");
 }
 
-p.info {
+p.note {
 	background-color: #e5f0f8;
 	border: #376e90 solid 1px;
 	color:#376e90;
 }
-p.info:before {
+p.note:before {
 	content: url("$assets-icon-info-svg");
 }
 
@@ -5490,4 +5513,9 @@ code[class*="language-"], pre[class*="language-"] {
 .article-body code[class*="language-"] {
   border: none!important;
   border-radius: none!important;
+}
+
+
+.article-header, .article-info{
+  opacity: 30%;
 }
