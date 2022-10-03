@@ -653,21 +653,25 @@ table {
 }
 
 .form .suggestion-list {
+  display: none;
   font-size: 13px;
   margin-top: 30px;
 }
 
 .form .suggestion-list label {
+  display: none;
   border-bottom: 1px solid #ddd;
   display: block;
   padding-bottom: 5px;
 }
 
 .form .suggestion-list li {
+  display: none;
   padding: 10px 0;
 }
 
 .form .suggestion-list li a:visited {
+  display: none;
   color: $visited_link_color;
 }
 
@@ -5484,4 +5488,8 @@ code[class*="language-"], pre[class*="language-"] {
 .article-body code[class*="language-"] {
   border: none!important;
   border-radius: none!important;
+}
+
+.CoveoLogo {
+  display: none !important;
 }
