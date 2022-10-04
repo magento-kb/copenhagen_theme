@@ -37,6 +37,9 @@
     </aside>
 
     <article id="main-content" class="article article-card-container">
+      <p class="migration-banner">
+        This page has <a href={{article.url}}>moved</a> and will be redirected soon.
+      </p>
       <header class="article-header">
         <h1 title="{{article.title}}" class="article-title">
           {{article.title}}
@@ -143,8 +146,8 @@
       }
   
       function addGhLinks(){
-          let gitUrl = 'https://github.com/magento/knowledge-base/blob/main/'
-          let issueUrl = 'https://github.com/magento/knowledge-base/issues/new/choose'
+          let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/sandbox/'
+          let issueUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/issues'
           let gh_filepath = document.getElementById('gh_filepath').title
           issueTitle = `Feedback on page: ${gh_filepath}`
           let editUrl = `${gitUrl}${gh_filepath}`
