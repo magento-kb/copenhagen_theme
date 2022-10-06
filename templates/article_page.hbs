@@ -123,19 +123,23 @@
   </div>
 </div>
 <script>  
+
+  // TODO: Change links to production links before deploying
+
   document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById('gh_filepath')) {
-        addGhLinks()
-        addExlRedirectLink()
+        let gh_filepath = document.getElementById('gh_filepath').title
+        addGhLinks(gh_filepath)
+        addExlRedirectLink(gh_filepath)
     } else {
         addLogIssueLink()
     }
 
-    function addExlRedirectLink() {
-      let gh_filepath = document.getElementById('gh_filepath').title
+    function addExlRedirectLink(gh_filepath) {
+      
       let filepathArray = gh_filepath.split('/')
       filepathArray.forEach((item, index) => {
-        if (item === 'help' || item === 'src') {
+        if (item === 'help' || item === 'src' || item ==='general') {
           filepathArray.splice(index, 1)
         }
         if (item === 'observation-for-adobe-commerce') {
@@ -153,16 +157,13 @@
         if (item === 'help-center-news') {
           filepathArray.splice(index, 1, 'news')
         }
+        // Regex if item contains .md and replace with .html instead
+        if (item.match(/\.md/)) {
+          filepathArray.splice(index, 1, item.replace('.md', '.html'))
+        }
       }) 
-      // Replace last item in array that ends with .md with .html
-      let lastItem = filepathArray[filepathArray.length - 1]
-      let lastItemArray = lastItem.split('.')
-      lastItemArray.splice(lastItemArray.length - 1, 1, 'html')
-      lastItem = lastItemArray.join('.')
-      filepathArray.splice(filepathArray.length - 1, 1, lastItem)
       let exlFilepath = filepathArray.join('/')
       let exlUrl = `https://experienceleague.corp.adobe.com/docs/commerce-knowledge-base/kb/${exlFilepath}?lang=en`
-      console.log (exlUrl)
       document.getElementById('exl-redirect-link').href = exlUrl
     }
 
@@ -178,10 +179,9 @@
         document.getElementsByClassName('article-author')[0].appendChild(linksDiv)
     }
 
-    function addGhLinks(){
+    function addGhLinks(gh_filepath){
         let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/sandbox/'
         let issueUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/issues'
-        let gh_filepath = document.getElementById('gh_filepath').title
         issueTitle = `Feedback on page: ${gh_filepath}`
         let editUrl = `${gitUrl}${gh_filepath}`
         createDivUl()
