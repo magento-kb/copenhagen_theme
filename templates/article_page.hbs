@@ -38,7 +38,7 @@
 
     <article id="main-content" class="article article-card-container">
       <p class="migration-banner">
-        This page has <a href={{article.url}}>moved</a> and will be redirected soon.
+        This page has <a id="exl-redirect-link" href='' target="_blank">moved</a> and will be redirected soon.
       </p>
       <header class="article-header">
         <h1 title="{{article.title}}" class="article-title">
@@ -118,75 +118,108 @@
         {{#if settings.show_recently_viewed_articles}}
           {{recent_articles}}
         {{/if}}
-<!--         {{#if settings.show_related_articles}}
-          {{related_articles}}
-        {{/if}} -->
       </div>
     </article>
   </div>
 </div>
 <script>  
   document.addEventListener("DOMContentLoaded", () => {
-      if (document.getElementById('gh_filepath')){
-          addGhLinks()
-      }
-      else{
-          addLogIssueLink()
-      }
-      function createDivUl(){
-          linksDiv = document.createElement('div')
-          unorderedList = document.createElement('ul')
-          linksDiv.className = 'gh-links-div'
-          unorderedList.className = 'gh-links-div'
-      }
+    if (document.getElementById('gh_filepath')) {
+        addGhLinks()
+        addExlRedirectLink()
+    } else {
+        addLogIssueLink()
+    }
+
+    function addExlRedirectLink() {
+      let gh_filepath = document.getElementById('gh_filepath').title
+      let filepathArray = gh_filepath.split('/')
+      filepathArray.forEach((item, index) => {
+        if (item === 'help' || item === 'src') {
+          filepathArray.splice(index, 1)
+        }
+        if (item === 'observation-for-adobe-commerce') {
+          filepathArray.splice(index, 1, 'observation')
+        }
+        if (item === 'managed-alerts-for-adobe-commerce') {
+          filepathArray.splice(index, 1, 'managed-alerts')
+        }
+        if (item === 'patches-available-in-qpt-tool') {
+          filepathArray.splice(index, 1, 'patches')
+        }
+        if (item === 'adobe-commerce-announcements') {
+          filepathArray.splice(index, 1, 'commerce-announcements')
+        }
+        if (item === 'help-center-news') {
+          filepathArray.splice(index, 1, 'news')
+        }
+      }) 
+      // Replace last item in array that ends with .md with .html
+      let lastItem = filepathArray[filepathArray.length - 1]
+      let lastItemArray = lastItem.split('.')
+      lastItemArray.splice(lastItemArray.length - 1, 1, 'html')
+      lastItem = lastItemArray.join('.')
+      filepathArray.splice(filepathArray.length - 1, 1, lastItem)
+      let exlFilepath = filepathArray.join('/')
+      let exlUrl = `https://experienceleague.corp.adobe.com/docs/commerce-knowledge-base/kb/${exlFilepath}?lang=en`
+      console.log (exlUrl)
+      document.getElementById('exl-redirect-link').href = exlUrl
+    }
+
+    function createDivUl(){
+        linksDiv = document.createElement('div')
+        unorderedList = document.createElement('ul')
+        linksDiv.className = 'gh-links-div'
+        unorderedList.className = 'gh-links-div'
+    }
   
-      function appendLinks(){
-          linksDiv.append(unorderedList)
-          document.getElementsByClassName('article-author')[0].appendChild(linksDiv)
-      }
+    function appendLinks(){
+        linksDiv.append(unorderedList)
+        document.getElementsByClassName('article-author')[0].appendChild(linksDiv)
+    }
+
+    function addGhLinks(){
+        let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/sandbox/'
+        let issueUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/issues'
+        let gh_filepath = document.getElementById('gh_filepath').title
+        issueTitle = `Feedback on page: ${gh_filepath}`
+        let editUrl = `${gitUrl}${gh_filepath}`
+        createDivUl()
+        createListItem(editUrl, 'Edit on GitHub')
+        createListItem(issueUrl, 'Report article issues')
+        appendLinks()
+    }
   
-      function addGhLinks(){
-          let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/sandbox/'
-          let issueUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/issues'
-          let gh_filepath = document.getElementById('gh_filepath').title
-          issueTitle = `Feedback on page: ${gh_filepath}`
-          let editUrl = `${gitUrl}${gh_filepath}`
-          createDivUl()
-          createListItem(editUrl, 'Edit on GitHub')
-          createListItem(issueUrl, 'Report article issues')
-          appendLinks()
-      }
-    
-      function addLogIssueLink(){
-          let issueUrl = "https:"
-          let zdUrl = document.URL
-          createDivUl()
-          issueTitle = `Feedback on page: ${zdUrl}`
-          issueUrl = `${issueUrl}${issueTitle}`
-          createListItem(issueUrl, 'Report article issues')
-          appendLinks()
-      }
-  
-      function createListItem(url, label){
-          let listItem = document.createElement('li')
-          let linkTag = document.createElement('a')
-          let img = document.createElement('img')
-          if(label == 'Report article issues'){
-              img.src = `{{asset 'gh_bug.svg'}}`
-          }
-          else if(label == 'Edit on GitHub'){
-              img.src = `{{asset 'gh_edit.svg'}}`
-          }
-          img.className = "gh-icons"
-          listItem.className = 'gh-link'
-          linkTag.title = label; 
-          linkTag.textContent = label; 
-          linkTag.className = 'gh-links-div'
-          linkTag.href = url;
-          linkTag.target = '_blank';
-          linkTag.prepend(img);
-          listItem.append(linkTag);
-          unorderedList.appendChild(listItem)
-      }
+    function addLogIssueLink(){
+        let issueUrl = "https:"
+        let zdUrl = document.URL
+        createDivUl()
+        issueTitle = `Feedback on page: ${zdUrl}`
+        issueUrl = `${issueUrl}${issueTitle}`
+        createListItem(issueUrl, 'Report article issues')
+        appendLinks()
+    }
+
+    function createListItem(url, label){
+        let listItem = document.createElement('li')
+        let linkTag = document.createElement('a')
+        let img = document.createElement('img')
+        if(label == 'Report article issues'){
+            img.src = `{{asset 'gh_bug.svg'}}`
+        }
+        else if(label == 'Edit on GitHub'){
+            img.src = `{{asset 'gh_edit.svg'}}`
+        }
+        img.className = "gh-icons"
+        listItem.className = 'gh-link'
+        linkTag.title = label; 
+        linkTag.textContent = label; 
+        linkTag.className = 'gh-links-div'
+        linkTag.href = url;
+        linkTag.target = '_blank';
+        linkTag.prepend(img);
+        listItem.append(linkTag);
+        unorderedList.appendChild(listItem)
+    }
     });
 </script>
