@@ -78,3 +78,18 @@
 .CoveoSearchInterface .coveo-results-column.coveo-no-results {
     margin: 0 0 0 28% !important;
 }
+
+coveocasedeflection .CoveoSearchInterface .coveo-results-column.coveo-no-results {
+    display: none !important;
+}
+
+coveocasedeflection .CoveoSearchInterface.Coveostate.CoveoComponentState.CoveoComponentOptions.CoveoQueryController.CoveoDebug.coveo-after-initialization {
+    position: sticky !important;
+    top: 50px !important;
+}
+
+coveocasedeflection .case-deflection-text {
+    position: sticky;
+    top: 50px;
+}
+

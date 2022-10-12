@@ -138,31 +138,32 @@
     function addExlRedirectLink(gh_filepath) {
       
       let filepathArray = gh_filepath.split('/')
+      let exlFilePathArray = []
       filepathArray.forEach((item, index) => {
-        if (item === 'help' || item === 'src' || item ==='general') {
-          filepathArray.splice(index, 1)
-        }
         if (item === 'observation-for-adobe-commerce') {
-          filepathArray.splice(index, 1, 'observation')
+          exlFilePathArray.push('observation')
         }
-        if (item === 'managed-alerts-for-adobe-commerce') {
-          filepathArray.splice(index, 1, 'managed-alerts')
+        else if (item === 'managed-alerts-for-adobe-commerce') {
+          exlFilePathArray.push('managed-alerts')
         }
-        if (item === 'patches-available-in-qpt-tool') {
-          filepathArray.splice(index, 1, 'patches')
+        else if (item === 'patches-available-in-qpt-tool') {
+          exlFilePathArray.push('patches')
         }
-        if (item === 'adobe-commerce-announcements') {
-          filepathArray.splice(index, 1, 'commerce-announcements')
+        else if (item === 'adobe-commerce-announcements') {
+          exlFilePathArray.push('commerce-announcements')
         }
-        if (item === 'help-center-news') {
-          filepathArray.splice(index, 1, 'news')
+        else if (item === 'help-center-news') {
+          exlFilePathArray.push('news')
         }
         // Regex if item contains .md and replace with .html instead
-        if (item.match(/\.md/)) {
-          filepathArray.splice(index, 1, item.replace('.md', '.html'))
+        else if (item.match(/\.md/g)) {
+          exlFilePathArray.push(item.replace('.md', '.html'))
+        } 
+        else if (item != 'help' && item != 'src' && item != 'general') {
+          exlFilePathArray.push(item)
         }
       }) 
-      let exlFilepath = filepathArray.join('/')
+      let exlFilepath = exlFilePathArray.join('/')
       let exlUrl = `https://experienceleague.corp.adobe.com/docs/commerce-knowledge-base/kb/${exlFilepath}?lang=en`
       document.getElementById('exl-redirect-link').href = exlUrl
     }
