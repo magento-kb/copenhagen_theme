@@ -117,3 +117,7 @@ coveocasedeflection {
 .CoveoSearchInterface {
     font-family: adobe-clean, sans-serif !important ;
 }
+
+.coveo-first-loading-animation {
+    display: none !important;
+}

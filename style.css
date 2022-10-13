@@ -5452,13 +5452,13 @@ p.warning-banner {
 
 p.migration-banner {
 	background-color: white;
-	border: #F29423 solid 2px;
+	border: #F29423 solid 1px;
 	color:#747474;
   margin: 0 0 20px 0; 
-  padding:10px 10vw; 
-  border-radius:5px; 
+  padding:10px 5vw; 
+  border-radius:0px; 
   text-align:center;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 p.migration-banner a:after {
