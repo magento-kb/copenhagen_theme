@@ -39,8 +39,6 @@
 
 .CoveoSearchInterface .coveo-main-section{
     max-width: 1320px !important;
-    
-
 }
 
 .CoveoSearchInterface .coveo-facet-column{
@@ -83,13 +81,39 @@ coveocasedeflection .CoveoSearchInterface .coveo-results-column.coveo-no-results
     display: none !important;
 }
 
-coveocasedeflection .CoveoSearchInterface.Coveostate.CoveoComponentState.CoveoComponentOptions.CoveoQueryController.CoveoDebug.coveo-after-initialization {
+coveocasedeflection #CoveoSearch {
     position: sticky !important;
-    top: 50px !important;
+    top: 100px !important;
 }
 
-coveocasedeflection .case-deflection-text {
+
+coveocasedeflection body {
+    height: auto;
     position: sticky;
-    top: 50px;
+    top: 0 !important;
 }
 
+coveocasedeflection {
+    position: sticky;
+    top: 0px;
+}
+
+.coveo-omnibox-hightlight{
+    font-weight: bold !important;
+    font-size: medium !important;
+    color: black !important;
+    font-family: adobe-clean, sans-serif !important;
+}
+
+.magic-box-suggestion span {
+    font-weight: normal ;
+    font-family: adobe-clean, sans-serif ;
+    color: #4b4b4b ;
+}
+.CoveoSearchbox .magic-box .magic-box-input > input {
+    font-family: adobe-clean, sans-serif ;
+}
+
+.CoveoSearchInterface {
+    font-family: adobe-clean, sans-serif !important ;
+}

@@ -15,19 +15,28 @@
   </h1>
   <div id="main-content" style="display:flex;">
     <div style="flex: 50%; margin-right:30px" class="form">
-      {{request_form}}
+      {{request_form wysiwyg=true}}
     </div>
     <CoveoCaseDeflection style="flex: 50%; margin-top:18px">
-      <div class="case-deflection-text">
+      <div id="case-deflection-text" class="case-deflection-text">
         <h2 style="margin-bottom: 5px;">Suggested Articles</h2>
-        <p style="margin: 5px 0 5px 0 ;">Based on your input and browsing, here are some articles we think can help solve your issue.</p>
+        <p style="margin: 5px 0 5px 0; font-size:15px; color: #313a45;">Based on your input and browsing, here are some articles we think can solve your issue.</p>
       </div>
     </CoveoCaseDeflection>
   </div>
 </div>
 
 <script>
-$("body").addClass("no-subfooter");
-$(".submit-a-request").addClass("hide");
+  $("body").addClass("no-subfooter");
+  $(".submit-a-request").addClass("hide");
+  document.addEventListener("DOMContentLoaded", function(event) {
+    let caseDeflectionComponent = null;
+    setTimeout(() => {
+      while(caseDeflectionComponent == null) {
+        caseDeflectionComponent = document.getElementById('CoveoSearch')
+      }
+      caseDeflectionComponent.prepend(document.getElementById('case-deflection-text'))
+    }, "500");
+  });
 </script>
 
