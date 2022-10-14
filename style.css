@@ -5523,7 +5523,92 @@ code[class*="language-"], pre[class*="language-"] {
   display: none !important;
 }
 
+/* ExL Blockquote CSS */
 
-.article-header, .article-info{
-  opacity: 30%;
+.extension {
+  color: #000;
+  padding: 1rem;
+  border: 1px solid #1e1e1e;
+  border-left-width: 3rem;
+  margin-bottom: 2rem !important;
+  box-shadow: 0 0.5em 1em -0.125em rgb(10 10 10 / 10%), 0 0px 0 1px rgb(10 10 10 / 2%);
 }
+
+
+.extension p, .extension div {
+  margin: 0;
+  font-size: 16px;
+}
+
+.extension>div:first-child {
+  font-weight: bold;
+}
+
+.extension>div:first-child {
+  align-items: center;
+}
+
+.extension>div:first-child {
+  display: flex !important;
+}
+
+.extension.tip>div:first-child:before, 
+.extension.important>div:first-child:before,
+.extension.warning>div:first-child:before,
+.extension.caution>div:first-child:before,
+.extension.admin>div:first-child:before,
+.extension.availability>div:first-child:before,
+.extension.prerequisites>div:first-child:before,
+.extension.info>div:first-child:before{
+  content: "";
+  background: url("$assets-icon-exl-info-svg") no-repeat center;
+  background-size: cover;
+  resize: both;
+  display: inline-block;
+  height: 16px !important;
+  width: 16px !important;
+  margin-right: .25rem;
+}
+
+.extension.tip, .extension.admin, .extension.availability, .extension.prerequisites, .extension.info {
+  border-color: #0469e3;
+}
+
+.extension.important, .extension.warning, .extension.caution {
+  border-color: #d16100;
+}
+
+.extension.error {
+  border-color: #bb0202;
+}
+
+.extension.error>div:first-child:before {
+  content: "";
+  background: url("$assets-icon-exl-error-svg") no-repeat center;
+  background-size: cover;
+  resize: both;
+  display: inline-block;
+  height: 16px !important;
+  width: 16px !important;
+  margin-right: .25rem;
+}
+
+.extension.success {
+  border-color: #007e50;
+}
+
+.extension.success>div:first-child:before {
+  content: "";
+  background: url("$assets-icon-exl-success-svg") no-repeat center;
+  background-size: cover;
+  resize: both;
+  display: inline-block;
+  height: 16px !important;
+  width: 16px !important;
+  margin-right: .25rem;
+}
+
+
+/* .article-header, .article-info{
+  opacity: 30%;
+} */
