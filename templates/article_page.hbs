@@ -121,10 +121,8 @@
     </article>
   </div>
 </div>
+
 <script>  
-
-  // TODO: Change links to production links before deploying
-
   document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById('gh_filepath')) {
         let gh_filepath = document.getElementById('gh_filepath').title
@@ -163,7 +161,7 @@
         }
       }) 
       let exlFilepath = exlFilePathArray.join('/')
-      let exlUrl = `https://experienceleague.corp.adobe.com/docs/commerce-knowledge-base/kb/${exlFilepath}?lang=en`
+      let exlUrl = `https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/${exlFilepath}?lang=en`
       document.getElementById('exl-redirect-link').href = exlUrl
     }
 
@@ -180,10 +178,11 @@
     }
 
     function addGhLinks(gh_filepath){
-        let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/sandbox/'
+        let exlGhFilepath = gh_filepath.replace('src', 'help')
+        let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/main/'
         let issueUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/issues'
         issueTitle = `Feedback on page: ${gh_filepath}`
-        let editUrl = `${gitUrl}${gh_filepath}`
+        let editUrl = `${gitUrl}${exlGhFilepath}`
         createDivUl()
         createListItem(editUrl, 'Edit on GitHub')
         createListItem(issueUrl, 'Report article issues')

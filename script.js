@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // COVEO INTEGRATION
 
   var options = {
-    APIKey: "xxe839af23-2639-4b13-8b91-eeacd713aa58",
+    APIKey: "xxe13a75db-0f62-48d9-8f97-b3c14b60a1a0",
     searchBoxId: "searchbox",
     searchPageId: "search",
     }
