@@ -1,7 +1,7 @@
 {
   "name": "Coveo ExL Implementation",
   "author": "Adobe Systems Incorporated",
-  "version": "2.18.1",
+  "version": "2.18.2",
   "api_version": 2,
   "default_locale": "en-us",
   "settings": [
