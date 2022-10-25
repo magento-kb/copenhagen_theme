@@ -46,5 +46,28 @@
       caseDeflectionComponent.prepend(document.getElementById('case-deflection-text'))
     }, "500");
   });
+
+  //add target blank to existing and future links in the case deflection component
+  //links will change and need to add event listener to the case deflection component
+  //to add the target blank to the links
+  document.addEventListener("DOMContentLoaded", function(event) {
+    let caseDeflectionComponent = null;
+    setTimeout(() => {
+      while(caseDeflectionComponent == null) {
+        caseDeflectionComponent = document.getElementById('CoveoSearch')
+      }
+      let links = caseDeflectionComponent.getElementsByTagName('a');
+      for (let i = 0; i < links.length; i++) {
+        links[i].setAttribute('target', '_blank');
+      }
+      caseDeflectionComponent.addEventListener('DOMNodeInserted', function(e) {
+        let links = caseDeflectionComponent.getElementsByTagName('a');
+        for (let i = 0; i < links.length; i++) {
+          links[i].setAttribute('target', '_blank');
+        }
+      });
+    }, "500");
+  });
+
 </script>
 
