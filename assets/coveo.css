@@ -121,3 +121,14 @@ coveocasedeflection {
 .coveo-first-loading-animation {
     display: none !important;
 }
+
+/* Hide coveocasedeflection on screen sizes */
+@media only screen and (max-width: 768px) {
+    coveocasedeflection {
+        display: none !important;
+    }
+    .CoveoSearchInterface .CoveoSearchbox {
+        margin-right: 0px !important;
+    }
+
+}
