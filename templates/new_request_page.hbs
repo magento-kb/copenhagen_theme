@@ -37,6 +37,7 @@
 <script>
   $("body").addClass("no-subfooter");
   $(".submit-a-request").addClass("hide");
+  let date = null;
   document.addEventListener("DOMContentLoaded", function(event) {
     let caseDeflectionComponent = null;
     setTimeout(() => {
@@ -68,6 +69,45 @@
       });
     }, "500");
   });
+  //add event listener to form id="new_request" that will obtain the value of input id="request_custom_fields_360029532732"
 
+    document.addEventListener("DOMContentLoaded", function(e) {
+      let input = document.querySelector('.request_custom_fields_360029532732');
+      if(input) {
+        input.addEventListener('change', function(e) {
+          let value = e.target.value;
+          date = new Date(value);
+          //get the current date
+          let currentDate = new Date();
+          //get the difference between the current date and the date selected in calendar days
+          let diff = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate())) /(1000 * 60 * 60 * 24));
+          console.log(diff)
+          if (diff < 2) {
+            alert('Requests for Temporary Cloud Project Upsizes should be submitted 48 hours (2 days) in advance of the requested start date/time. We cannot guarantee upsizes with less than 48 hours (2 days) advanced notice to be completed by the selected start date/time.');
+          }
+          //if date selected is not 2 calendar days in the future show alert pop up
+          console.log(value);
+        });
+      }
+    })
+
+    document.addEventListener("DOMContentLoaded", function(e) {
+      let input = document.querySelector('.request_custom_fields_360029597131');
+      if(input) {
+        input.addEventListener('change', function(e) {
+          let value = e.target.value;
+          //change value from date format Month day, year to mm/dd/yyyy
+          let endDate = new Date(value);
+          {{!-- let currentDate = new Date(); --}}
+          let diff = Math.floor((Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()) - Date.UTC(date.getFullYear(),
+          date.getMonth(), date.getDate())) /(1000 * 60 * 60 * 24));
+          if(diff < 0) {
+            alert('Your selected date cannot be before the start date');
+          } 
+          console.log(date);
+          console.log(diff);
+        });
+      }
+    })
 </script>
 
