@@ -305,7 +305,7 @@ $('span.banner_close_btn').click(function() {
     $(cloudProjectUrl).change(function() {
       var projectUrl = cloudProjectUrl.val();
       var regexProjectId = /([^A-z0-9]+)([A-z0-9]{13})([^A-z0-9]{0,}|[^A-z0-9]+.*)$/;
-          var regexRegion = /(\.|\/)([A-z]+[\-0-9]{0,})\.(magentosite|magento)\./
+          var regexRegion = /(\.|\/)([a-zA-Z0-9-]*)\.(magentosite|magento)\./
           var projectIdFound = projectUrl.match(regexProjectId);
           var regionFound = projectUrl.match(regexRegion);
       projectID = projectIdFound[2]
