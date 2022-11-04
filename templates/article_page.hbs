@@ -128,97 +128,116 @@
         let gh_filepath = document.getElementById('gh_filepath').title
         addGhLinks(gh_filepath)
         addExlRedirectLink(gh_filepath)
+    } else if (document.getElementById('exlLink')) {
+        let exlLink = document.getElementById('exlLink').title
+        addManualExlLink(exlLink)
+        addLogIssueLink()
     } else {
         addLogIssueLink()
-    }
-
-    function addExlRedirectLink(gh_filepath) {
-      
-      let filepathArray = gh_filepath.split('/')
-      let exlFilePathArray = []
-      filepathArray.forEach((item, index) => {
-        if (item === 'observation-for-adobe-commerce') {
-          exlFilePathArray.push('observation')
-        }
-        else if (item === 'managed-alerts-for-adobe-commerce') {
-          exlFilePathArray.push('managed-alerts')
-        }
-        else if (item === 'patches-available-in-qpt-tool') {
-          exlFilePathArray.push('patches')
-        }
-        else if (item === 'adobe-commerce-announcements') {
-          exlFilePathArray.push('commerce-announcements')
-        }
-        else if (item === 'help-center-news') {
-          exlFilePathArray.push('news')
-        }
-        // Regex if item contains .md and replace with .html instead
-        else if (item.match(/\.md/g)) {
-          exlFilePathArray.push(item.replace('.md', '.html'))
-        } 
-        else if (item != 'help' && item != 'src' && item != 'general' && item != 'help-center') {
-          exlFilePathArray.push(item)
-        }
-      }) 
-      let exlFilepath = exlFilePathArray.join('/')
-      let exlUrl = `https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/${exlFilepath}?lang=en`
-      document.getElementById('exl-redirect-link').href = exlUrl
-    }
-
-    function createDivUl(){
-        linksDiv = document.createElement('div')
-        unorderedList = document.createElement('ul')
-        linksDiv.className = 'gh-links-div'
-        unorderedList.className = 'gh-links-div'
-    }
-  
-    function appendLinks(){
-        linksDiv.append(unorderedList)
-        document.getElementsByClassName('article-author')[0].appendChild(linksDiv)
-    }
-
-    function addGhLinks(gh_filepath){
-        let exlGhFilepath = gh_filepath.replace('src', 'help')
-        let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/main/'
-        let issueUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/issues'
-        issueTitle = `Feedback on page: ${gh_filepath}`
-        let editUrl = `${gitUrl}${exlGhFilepath}`
-        createDivUl()
-        createListItem(editUrl, 'Edit on GitHub')
-        createListItem(issueUrl, 'Report article issues')
-        appendLinks()
-    }
-  
-    function addLogIssueLink(){
-        let issueUrl = "https:"
-        let zdUrl = document.URL
-        createDivUl()
-        issueTitle = `Feedback on page: ${zdUrl}`
-        issueUrl = `${issueUrl}${issueTitle}`
-        createListItem(issueUrl, 'Report article issues')
-        appendLinks()
-    }
-
-    function createListItem(url, label){
-        let listItem = document.createElement('li')
-        let linkTag = document.createElement('a')
-        let img = document.createElement('img')
-        if(label == 'Report article issues'){
-            img.src = `{{asset 'gh_bug.svg'}}`
-        }
-        else if(label == 'Edit on GitHub'){
-            img.src = `{{asset 'gh_edit.svg'}}`
-        }
-        img.className = "gh-icons"
-        listItem.className = 'gh-link'
-        linkTag.title = label; 
-        linkTag.textContent = label; 
-        linkTag.className = 'gh-links-div'
-        linkTag.href = url;
-        linkTag.target = '_blank';
-        linkTag.prepend(img);
-        listItem.append(linkTag);
-        unorderedList.appendChild(listItem)
+        removeMigrationBanner()
     }
   });
+
+  function removeMigrationBanner() {
+    let migrationBanner = document.querySelector('.migration-banner');
+    let articleHeader = document.querySelector('.article-header');
+    let articleInfo = document.querySelector('.article-info');
+
+    migrationBanner.style.display = 'none';
+    articleHeader.style.opacity = '1';
+    articleInfo.style.opacity = '1';
+  }
+
+  function addManualExlLink(exlLink) {
+    let exlLinkElement = document.getElementById('exl-redirect-link')
+    exlLinkElement.href = exlLink
+  }
+
+  function addExlRedirectLink(gh_filepath) {
+    let filepathArray = gh_filepath.split('/')
+    let exlFilePathArray = []
+    filepathArray.forEach((item, index) => {
+      if (item === 'observation-for-adobe-commerce') {
+        exlFilePathArray.push('observation')
+      }
+      else if (item === 'managed-alerts-for-adobe-commerce') {
+        exlFilePathArray.push('managed-alerts')
+      }
+      else if (item === 'patches-available-in-qpt-tool') {
+        exlFilePathArray.push('patches')
+      }
+      else if (item === 'adobe-commerce-announcements') {
+        exlFilePathArray.push('commerce-announcements')
+      }
+      else if (item === 'help-center-news') {
+        exlFilePathArray.push('news')
+      }
+      // Regex if item contains .md and replace with .html instead
+      else if (item.match(/\.md/g)) {
+        exlFilePathArray.push(item.replace('.md', '.html'))
+      } 
+      else if (item != 'help' && item != 'src' && item != 'general' && item != 'help-center') {
+        exlFilePathArray.push(item)
+      }
+    }) 
+    let exlFilepath = exlFilePathArray.join('/')
+    let exlUrl = `https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/${exlFilepath}?lang=en`
+    document.getElementById('exl-redirect-link').href = exlUrl
+  }
+
+  function createDivUl(){
+    linksDiv = document.createElement('div')
+    unorderedList = document.createElement('ul')
+    linksDiv.className = 'gh-links-div'
+    unorderedList.className = 'gh-links-div'
+  }
+
+  function appendLinks(){
+    linksDiv.append(unorderedList)
+    document.getElementsByClassName('article-author')[0].appendChild(linksDiv)
+  }
+
+  function addGhLinks(gh_filepath){
+    let exlGhFilepath = gh_filepath.replace('src', 'help')
+    let gitUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/tree/main/'
+    let issueUrl = 'https://github.com/AdobeDocs/commerce-knowledge-base.en/issues'
+    issueTitle = `Feedback on page: ${gh_filepath}`
+    let editUrl = `${gitUrl}${exlGhFilepath}`
+    createDivUl()
+    createListItem(editUrl, 'Edit on GitHub')
+    createListItem(issueUrl, 'Report article issues')
+    appendLinks()
+  }
+
+  function addLogIssueLink(){
+    let issueUrl = "https:"
+    let zdUrl = document.URL
+    createDivUl()
+    issueTitle = `Feedback on page: ${zdUrl}`
+    issueUrl = `${issueUrl}${issueTitle}`
+    createListItem(issueUrl, 'Report article issues')
+    appendLinks()
+  }
+
+  function createListItem(url, label){
+    let listItem = document.createElement('li')
+    let linkTag = document.createElement('a')
+    let img = document.createElement('img')
+    if(label == 'Report article issues'){
+        img.src = `{{asset 'gh_bug.svg'}}`
+    }
+    else if(label == 'Edit on GitHub'){
+        img.src = `{{asset 'gh_edit.svg'}}`
+    }
+    img.className = "gh-icons"
+    listItem.className = 'gh-link'
+    linkTag.title = label; 
+    linkTag.textContent = label; 
+    linkTag.className = 'gh-links-div'
+    linkTag.href = url;
+    linkTag.target = '_blank';
+    linkTag.prepend(img);
+    listItem.append(linkTag);
+    unorderedList.appendChild(listItem)
+  }
 </script>
