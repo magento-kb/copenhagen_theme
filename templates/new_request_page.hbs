@@ -25,10 +25,10 @@
     <div style="flex: 50%; margin-right:30px" class="form">
       {{request_form wysiwyg=true}}
     </div>
-    <CoveoCaseDeflection style="flex: 50%; margin-top:18px">
+    <CoveoCaseDeflection style="flex: 50%; margin-top:18px" data-throttle-time=7000>
       <div id="case-deflection-text" class="case-deflection-text">
         <h2 style="margin-bottom: 5px;">Suggested Articles</h2>
-        <p style="margin: 5px 0 5px 0; font-size:15px; color: #313a45;">Based on your input and browsing, here are some articles we think can solve your issue.</p>
+        <p style="margin: 5px 0 5px 0; font-size:15px; color: #313a45;">Based on your input, here are some articles that can help with your issue.</p>
       </div>
     </CoveoCaseDeflection>
   </div>
@@ -37,6 +37,7 @@
 <script>
   $("body").addClass("no-subfooter");
   $(".submit-a-request").addClass("hide");
+
   document.addEventListener("DOMContentLoaded", function(event) {
     let caseDeflectionComponent = null;
     setTimeout(() => {
@@ -48,8 +49,6 @@
   });
 
   //add target blank to existing and future links in the case deflection component
-  //links will change and need to add event listener to the case deflection component
-  //to add the target blank to the links
   document.addEventListener("DOMContentLoaded", function(event) {
     let caseDeflectionComponent = null;
     setTimeout(() => {
@@ -68,6 +67,13 @@
       });
     }, "500");
   });
+ 
+document.addEventListener("DOMContentLoaded", function(event) {
+  if(HelpCenter.user) {
+    let uid = HelpCenter.user.identifier;
+    coveoua("set", 'uid', uid);  
+  }
+})
 
+ 
 </script>
-
