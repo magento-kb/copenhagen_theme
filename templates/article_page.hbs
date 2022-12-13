@@ -124,7 +124,9 @@
 
 <script>  
   document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById('gh_filepath')) {
+    if (document.getElementById('autoRedirectLink')) {
+      autoRedirect()
+    } else if (document.getElementById('gh_filepath')) {
         let gh_filepath = document.getElementById('gh_filepath').title
         addGhLinks(gh_filepath)
         addExlRedirectLink(gh_filepath)
@@ -240,4 +242,10 @@
     listItem.append(linkTag);
     unorderedList.appendChild(listItem)
   }
+
+  function autoRedirect() {
+    let autoRedirectLink = document.getElementById('autoRedirectLink').title
+    window.location.href = autoRedirectLink
+  }
+
 </script>
