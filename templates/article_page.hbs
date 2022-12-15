@@ -244,7 +244,15 @@
   }
 
   function autoRedirect() {
+    // obtain current url
+    let currentUrl = window.location.href
+    //obtain heading anchor in url
+    let headingAnchor = currentUrl.split('#')[1]
     let autoRedirectLink = document.getElementById('autoRedirectLink').title
+    // if heading anchor is present in url, append it to the auto redirect link
+    if (headingAnchor) {
+      autoRedirectLink = `${autoRedirectLink}#${headingAnchor}`
+    }
     window.location.href = autoRedirectLink
   }
 
