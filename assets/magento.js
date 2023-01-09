@@ -362,7 +362,7 @@ $('span.banner_close_btn').click(function() {
     $("<div id='org_id'>").insertBefore($('#request_organization_id_label'));
       $("div#org_id").append($('#request_organization_id_label'));
     
-    $("<a class='org_help_text' href='https://support.magento.com/hc/en-us/articles/360020694351' target='_blank' rel='noopener noreferrer'>Not seeing an organization that was shared with you?</a>").insertAfter($("#request_organization_id_label"));
+    $("<a class='org_help_text' href='https://experienceleague.adobe.com/docs/commerce-knowledge-base/kb/help-center-guide/magento-help-center-user-guide.html?lang=en#provide-shared-access' target='_blank' rel='noopener noreferrer'>Not seeing an organization that was shared with you?</a>").insertAfter($("#request_organization_id_label"));
     
     $("div#org_id").css('display', 'flex');
     $("div#org_id").css('justify-content', "space-between");
