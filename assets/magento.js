@@ -230,11 +230,6 @@ $('span.banner_close_btn').click(function() {
     $(".request_ticket_form_id").hide();
   }
 
-/*--------------------Code to change the text on the new request page (ZD-)--------------------*/
-  
-   $("label[for=request_issue_type_select]").text("Please select the Magento Product for which you are seeking Support:");
-  
-
     /*---------------------------Pop up Messages on New Request Form-------------------------*/
     // popup error message if old mage version
     $("#request_custom_fields_"+ magento_version_field_id).change(function (){
